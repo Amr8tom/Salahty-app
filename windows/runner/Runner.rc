@@ -89,13 +89,13 @@ BEGIN
     BEGIN
         BLOCK "040904e4"
         BEGIN
-            VALUE "CompanyName", "com.hmz" "\0"
-            VALUE "FileDescription", "al_quran" "\0"
+            VALUE "CompanyName", "com.sahlaty" "\0"
+            VALUE "FileDescription", "Shalaty" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "al_quran" "\0"
-            VALUE "LegalCopyright", "Copyright (C) 2022 com.hmz. All rights reserved." "\0"
+            VALUE "InternalName", "slahty" "\0"
+            VALUE "LegalCopyright", "Copyright (C) 2025 com.sahlaty.byAmrAlaa. All rights reserved." "\0"
             VALUE "OriginalFilename", "al_quran.exe" "\0"
-            VALUE "ProductName", "al_quran" "\0"
+            VALUE "ProductName", "com.sahlaty" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

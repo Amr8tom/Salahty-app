@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class CustomImage extends StatelessWidget {
   final double? opacity;
+  final AlignmentGeometry? aligment;
   final double? height;
   final String? imagePath;
 
@@ -9,7 +10,7 @@ class CustomImage extends StatelessWidget {
     super.key,
     this.imagePath,
     this.height,
-    this.opacity,
+    this.opacity, this.aligment,
   });
 
   @override
@@ -19,7 +20,7 @@ class CustomImage extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 8.0),
         child: Align(
-          alignment: Alignment.topRight,
+          alignment:aligment?? Alignment.center,
           child: Image.asset(
             imagePath!,
             height: height,

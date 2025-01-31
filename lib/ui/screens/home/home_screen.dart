@@ -1,41 +1,40 @@
 import 'dart:io';
 import 'dart:async';
 import 'dart:math' as math;
-import 'package:al_quran/app_routes.dart';
 import 'package:al_quran/configs/app.dart';
 import 'package:al_quran/providers/app_provider.dart';
+import 'package:al_quran/ui/screens/home/widgets/main_screen.dart';
 import 'package:al_quran/utils/drawer.dart';
-import 'package:al_quran/ui/widgets/button/app_button.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:provider/provider.dart';
 import 'package:al_quran/configs/configs.dart';
-import 'package:al_quran/ui/widgets/app/app_name.dart';
-import 'package:al_quran/ui/widgets/quran_rail.dart';
-import 'package:al_quran/ui/widgets/calligraphy.dart';
-import 'package:al_quran/ui/widgets/app/app_version.dart';
-import 'package:al_quran/ui/widgets/app/drawer_app_name.dart';
+import '../../../cubits/Azan/azan_cubit.dart';
+import '../../../utils/geolocator.dart';
 
-part 'widgets/main_screen.dart';
 part 'widgets/bottom_ayah.dart';
 part 'widgets/custom_drawer.dart';
-
 class HomeScreen extends StatefulWidget {
   final double maxSlide;
   const HomeScreen({super.key, required this.maxSlide});
+
   @override
   HomeScreenState createState() => HomeScreenState();
 }
-
 class HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   late AnimationController animationController;
-
   @override
   void initState() {
     super.initState();
+    GetLocation.getLatLang(context: context);
+    context.read<AzanCubit>().fetch(
+        latitude: GetLocation.pos?.latitude.toString(),
+        longitude: GetLocation.pos?.longitude.toString());
 
     animationController = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 250));
+      vsync: this,
+      duration: const Duration(milliseconds: 350), // Smooth animation
+    );
   }
 
   void toggle() => animationController.isDismissed
@@ -64,11 +63,12 @@ class HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   }
 
   void _onDragEnd(DragEndDetails details) {
-    double kMinFlingVelocity = 365.0;
+    const double kMinFlingVelocity = 365.0;
 
     if (animationController.isDismissed || animationController.isCompleted) {
       return;
     }
+
     if (details.velocity.pixelsPerSecond.dx.abs() >= kMinFlingVelocity) {
       double visualVelocity = details.velocity.pixelsPerSecond.dx /
           MediaQuery.of(context).size.width;
@@ -82,45 +82,43 @@ class HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   }
 
   Future<bool> _onWillPop() async {
-    return (await (showDialog(
-          context: context,
-          builder: (context) => AlertDialog(
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-            title: const Text(
-              "Exit Application",
-              style: TextStyle(fontWeight: FontWeight.bold),
+    return (await showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+        backgroundColor: Colors.white,
+        title: const Text(
+          "خروج من التطبيق",
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+        ),
+        content: const Text("هل أنت متأكد أنك تريد الخروج؟"),
+        actions: <Widget>[
+          TextButton(
+            child: const Text(
+              "نعم",
+              style: TextStyle(color: Colors.red, fontSize: 16),
             ),
-            content: const Text("Are You Sure?"),
-            actions: <Widget>[
-              TextButton(
-                child: const Text(
-                  "Yes",
-                  style: TextStyle(color: Colors.red),
-                ),
-                onPressed: () {
-                  exit(0);
-                },
-              ),
-              TextButton(
-                child: const Text(
-                  "No",
-                  style: TextStyle(color: Colors.blue),
-                ),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-            ],
+            onPressed: () => exit(0),
           ),
-        ) as FutureOr<bool>?)) ??
+          TextButton(
+            child: const Text(
+              "لا",
+              style: TextStyle(color: Colors.blue, fontSize: 16),
+            ),
+            onPressed: () => Navigator.of(context).pop(),
+          ),
+        ],
+      ),
+    )) ??
         false;
   }
 
   @override
   Widget build(BuildContext context) {
     App.init(context);
-    final appProvider = Provider.of<AppProvider>(context);
+    App.getLocation( context: context);
     double width = MediaQuery.of(context).size.width;
 
     return WillPopScope(
@@ -134,47 +132,64 @@ class HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
           animation: animationController,
           builder: (context, _) {
             return Material(
-              color: appProvider.isDark ? Colors.grey[900] : Colors.grey[200],
-              child: Stack(
-                children: <Widget>[
-                  Transform.translate(
-                    offset: Offset(
-                        widget.maxSlide * (animationController.value - 1), 0),
-                    child: Transform(
-                      transform: Matrix4.identity()
-                        ..setEntry(3, 2, 0.001)
-                        ..rotateY(
-                            math.pi / 2 * (1 - animationController.value)),
-                      alignment: Alignment.centerRight,
-                      child: const _CustomDrawer(),
+              child: Container(
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage('assets/images/islamic_pattern1.jpg'), // Islamic pattern image
+                    fit: BoxFit.cover,
+                    alignment: Alignment.centerRight,
+                    colorFilter: ColorFilter.mode(
+                      Colors.black.withOpacity(0.5), // Adjust opacity
+                      BlendMode.darken,
                     ),
                   ),
-                  Transform.translate(
-                    offset:
-                        Offset(widget.maxSlide * animationController.value, 0),
-                    child: Transform(
-                      transform: Matrix4.identity()
-                        ..setEntry(3, 2, 0.001)
-                        ..rotateY(-math.pi / 2 * animationController.value),
-                      alignment: Alignment.centerLeft,
-                      child: const _MainScreen(),
-                    ),
-                  ),
-                  Positioned(
-                    top: 4.0 + MediaQuery.of(context).padding.top,
-                    left: width * 0.02 +
-                        animationController.value * widget.maxSlide,
-                    child: IconButton(
-                      icon: Icon(
-                        Iconsax.menu,
-                        size: AppDimensions.normalize(11),
-                        color: Colors.grey,
+                ),
+
+                child: Stack(
+                  children: <Widget>[
+                    // Custom Drawer
+                    Transform.translate(
+                      offset: Offset(
+                          widget.maxSlide * (animationController.value - 1), 0),
+                      child: Transform(
+                        transform: Matrix4.identity()
+                          ..setEntry(3, 2, 0.001)
+                          ..rotateY(math.pi / 2 * (1 - animationController.value))
+                          ..scale(0.95 + 0.05 * animationController.value),
+                        alignment: Alignment.centerRight,
+                        child: const _CustomDrawer(),
                       ),
-                      onPressed: toggle,
-                      color: appProvider.isDark ? Colors.white : Colors.black,
                     ),
-                  ),
-                ],
+
+                    /// Main Screen
+                    Transform.translate(
+                      offset:
+                      Offset(widget.maxSlide * animationController.value, 0),
+                      child: Transform(
+                        transform: Matrix4.identity()
+                          ..setEntry(3, 2, 0.001)
+                          ..rotateY(-math.pi / 2 * animationController.value),
+                        alignment: Alignment.centerLeft,
+                        child: const MainScreen(),
+                      ),
+                    ),
+
+                    /// Menu Icon
+                    Positioned(
+                      top: 4.0 + MediaQuery.of(context).padding.top,
+                      left: width * 0.02 +
+                          animationController.value * widget.maxSlide,
+                      child: IconButton(
+                        icon: Icon(
+                          Iconsax.menu,
+                          size: AppDimensions.normalize(11),
+                          color: Colors.white,
+                        ),
+                        onPressed: toggle,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             );
           },

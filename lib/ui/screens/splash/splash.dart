@@ -27,7 +27,7 @@ class _SplashScreenState extends State<SplashScreen> {
       appProvider.initTheme();
     });
 
-    bool isNew = appProvider.init();
+    // bool isNew = appProvider.init();
 
     final bookmarkCubit = BookmarkCubit.cubit(context);
     final chapterCubit = ChapterCubit.cubit(context);
@@ -45,7 +45,9 @@ class _SplashScreenState extends State<SplashScreen> {
       if (mounted) {
         Navigator.pushReplacementNamed(
           context,
-          isNew ? AppRoutes.onboarding : AppRoutes.home,
+          // isNew ?
+          // AppRoutes.onboarding :
+          AppRoutes.home,
         );
       }
     });
@@ -67,36 +69,50 @@ class _SplashScreenState extends State<SplashScreen> {
     final appProvider = Provider.of<AppProvider>(context);
 
     return Scaffold(
-      backgroundColor: appProvider.isDark ? Colors.grey[850] : Colors.white,
-      body: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            WidgetAnimator(
-              child: Image.asset(
-                appProvider.isDark ? StaticAssets.gradLogo : StaticAssets.logo,
-                height: AppDimensions.normalize(100),
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              Color(0xFF0F2027), // Deep Teal
+              Color(0xFF203A43), // Teal
+              Color(0xFF3A5963), // Teal
+              Color(0xFFF3CA40), // Golden Yellow
+            ],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
+        ),
+        child: Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              WidgetAnimator(
+                child: Image.asset(
+                  color: Colors.amber,
+                  appProvider.isDark ? StaticAssets.gradLogo : StaticAssets.logo,
+                  height: AppDimensions.normalize(100),
+                ),
               ),
-            ),
-            Space.y1!,
-            Shimmer.fromColors(
-              enabled: true,
-              baseColor: appProvider.isDark ? Colors.white : Colors.black,
-              highlightColor: appProvider.isDark ? Colors.grey : Colors.white,
-              child: BlocBuilder<ChapterCubit, ChapterState>(
-                builder: (context, state) {
-                  if (state is ChapterFetchLoading) {
-                    return const Text('Getting all Surahs...');
-                  } else if (bookmarkCubit.state is BookmarkFetchLoading) {
-                    return const Text('Setting up Bookmarks...');
-                  } else if (juzCubit.state is JuzFetchLoading) {
-                    return const Text('Setting up offline mode...');
-                  }
-                  return const Text('Initializing data...');
-                },
+              Space.y1!,
+              Shimmer.fromColors(
+                enabled: true,
+                baseColor: appProvider.isDark ? Colors.white : Colors.black,
+                highlightColor: appProvider.isDark ? Colors.grey : Colors.white,
+                child: BlocBuilder<ChapterCubit, ChapterState>(
+                  builder: (context, state) {
+                    if (state is ChapterFetchLoading) {
+                      return const Text('Getting all Surahs...');
+                    } else if (bookmarkCubit.state is BookmarkFetchLoading) {
+                      return const Text('Setting up Bookmarks...');
+                    } else if (juzCubit.state is JuzFetchLoading) {
+                      return const Text('Setting up offline mode...');
+                    }
+                    return const Text('Initializing data...');
+                  },
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

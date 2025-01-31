@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Primary app colors -->
+    <color name="primary">#6200EE</color>
+    <color name="primary_variant">#3700B3</color>
+    <color name="secondary">#03DAC6</color>
+
+
+    <!-- Splash screen background color -->
+    <color name="lightBlue">#102831</color> <!-- Deep blue -->
+<!-- colors for gradient native splash screen -->
+    <color name="gradient_start">#0F2027</color> <!-- Deep Teal -->
+    <color name="gradient_center">#203A43</color> <!-- Teal -->
+    <color name="gradient_end">#F3CA40</color> <!-- Golden Yellow -->
+
+
+
+    <!-- Neutral colors -->
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="gray">#808080</color>
+
+    <!-- Error colors -->
+    <color name="error">#B00020</color>
+
+    <!-- Add more colors as needed -->
+</resources>

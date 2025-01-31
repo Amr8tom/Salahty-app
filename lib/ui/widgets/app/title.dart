@@ -4,20 +4,21 @@ import 'package:al_quran/configs/app_typography.dart';
 
 class CustomTitle extends StatelessWidget {
   final String? title;
+  final Color? color;
 
-  const CustomTitle({super.key, this.title});
+  const CustomTitle({super.key, this.title,this.color });
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
 
     return Positioned(
-      top: height * 0.12,
-      left: width * 0.05,
+      top: height * 0.05,
+      left: width * 0.4,
       child: Text(
         title!,
         style: AppText.h2b!.copyWith(
-          color: AppTheme.c!.textSub,
+          color:color?? AppTheme.c!.textSub,
         ),
       ),
     );

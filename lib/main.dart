@@ -1,10 +1,12 @@
+import 'package:al_quran/cubits/Azan/azan_cubit.dart';
+import 'package:al_quran/ui/screens/azan/azan_screen.dart';
+import 'package:al_quran/ui/screens/qibla_direction/qibla_direction_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:provider/provider.dart';
 import 'package:url_strategy/url_strategy.dart';
-
 import 'package:al_quran/app_routes.dart';
 import 'package:al_quran/cubits/bookmarks/cubit.dart';
 import 'package:al_quran/cubits/chapter/cubit.dart';
@@ -17,10 +19,9 @@ import 'package:al_quran/providers/onboarding_provider.dart';
 import 'package:al_quran/ui/screens/bookmarks/bookmarks_screen.dart';
 import 'package:al_quran/ui/screens/home/home_screen.dart';
 import 'package:al_quran/ui/screens/juz/juz_index_screen.dart';
-import 'package:al_quran/ui/screens/onboarding/onboarding.dart';
-import 'package:al_quran/ui/screens/share_app/share_app.dart';
 import 'package:al_quran/ui/screens/splash/splash.dart';
 import 'package:al_quran/ui/screens/surah/surah_index_screen.dart';
+
 
 import 'configs/core_theme.dart' as theme;
 
@@ -30,6 +31,7 @@ void main() async {
 
   // hive
   await Hive.initFlutter();
+
 
   Hive.registerAdapter<Juz>(JuzAdapter());
   Hive.registerAdapter<Ayah>(AyahAdapter());
@@ -66,6 +68,7 @@ class MyAppState extends State<MyApp> {
       providers: [
         BlocProvider(create: (_) => JuzCubit()),
         BlocProvider(create: (_) => ChapterCubit()),
+        BlocProvider(create: (_) => AzanCubit()),
         BlocProvider(create: (_) => BookmarkCubit()),
         ChangeNotifierProvider(create: (_) => AppProvider()),
         ChangeNotifierProvider(create: (_) => OnBoardingProvider()),
@@ -94,16 +97,16 @@ class MaterialChild extends StatelessWidget {
       title: 'They Holy Qur\'an',
       debugShowCheckedModeBanner: false,
       theme: theme.themeLight,
-      darkTheme: theme.themeDark,
+      darkTheme: theme.themeLight,
       themeMode: value!.themeMode,
       initialRoute: AppRoutes.splash,
       routes: <String, WidgetBuilder>{
         AppRoutes.juz: (context) => const JuzIndexScreen(),
         AppRoutes.splash: (context) => const SplashScreen(),
         AppRoutes.surah: (context) => const SurahIndexScreen(),
-        AppRoutes.shareApp: (context) => const ShareAppScreen(),
+        AppRoutes.azan: (context) => const AzanScreen(),
         AppRoutes.bookmarks: (context) => const BookmarksScreen(),
-        AppRoutes.onboarding: (context) => const OnboardingScreen(),
+        AppRoutes.qibla: (context) => const QiblaDirectionScreen(),
         AppRoutes.home: (context) =>
             HomeScreen(maxSlide: MediaQuery.of(context).size.width * 0.835),
       },

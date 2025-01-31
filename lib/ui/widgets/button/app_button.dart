@@ -17,11 +17,12 @@ class AppButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
         ),
         onPressed: onPressed,
-        color: const Color(0xffee8f8b),
+        // color: const Color(0xffee8f8b),
+        color: const Color(0xff87591c),
         child: WidgetAnimator(
           child: Text(
             title,
-            style: AppText.b1,
+            style: AppText.b1?.copyWith(color: Colors.white,fontWeight: FontWeight.bold),
           ),
         ),
       ),

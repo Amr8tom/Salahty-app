@@ -31,30 +31,31 @@ class SurahTile extends StatelessWidget {
         child: Padding(
           padding: Space.all(1),
           child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(chapter!.number!.toString()),
+              Text(chapter!.number!.toString(),style: TextStyle(
+                fontSize: 20,
+                color: Colors.white
+              ),),
               Space.x1!,
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    chapter!.englishName!,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Text(
-                    chapter!.englishNameTranslation!,
-                    style: AppText.b2,
-                  )
-                ],
+              Space.x1!,
+              Text(
+                chapter!.englishName!,
+                style: AppText.b1?.copyWith(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w400,
+                  color: Colors.amber,
+                ),
               ),
               Expanded(
                 child: Text(
                   chapter!.name!,
-                  style: AppText.b1b,
-                  textAlign: TextAlign.right,
+                  style: AppText.b1?.copyWith(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),                   textAlign: TextAlign.right,
                 ),
               ),
             ],

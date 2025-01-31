@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "665367501896",
+    "project_id": "salahty-app",
+    "storage_bucket": "salahty-app.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:665367501896:android:56d88dde8864cecb0a0c7d",
+        "android_client_info": {
+          "package_name": "com.sahlaty.byAmrAlaa"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBx2B_XmwHQ2zwU-wnJkdC3V8eaSMesM80"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

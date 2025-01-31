@@ -1,32 +1,33 @@
 import 'package:al_quran/app_routes.dart';
+import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 
 class DrawerUtils {
-  static const List items = [
+  static const List<Map<String, dynamic>> items = [
     {
-      'title': 'Surah Index',
+      'title': 'فهرس السور', // Surah Index
       'icon': Iconsax.sort,
       'route': AppRoutes.surah,
     },
     {
-      'title': 'Juz Index',
+      'title': 'فهرس الأجزاء', // Juz Index
       'icon': Iconsax.note_1,
       'route': AppRoutes.juz,
     },
     {
-      'title': 'Bookmarks',
+      'title': 'مواقيت الصلاة', // Bookmarks
+      'icon': Iconsax.timer,
+      'route': AppRoutes.azan,
+    },
+    {
+      'title': 'الإشارات المرجعية', // Bookmarks
       'icon': Iconsax.book_1,
       'route': AppRoutes.bookmarks,
     },
     {
-      'title': 'Introduction',
-      'icon': Iconsax.info_circle,
-      'route': AppRoutes.onboarding,
-    },
-    {
-      'title': 'Share App',
-      'icon': Iconsax.share,
-      'route': AppRoutes.shareApp,
-    },
-  ];
+      "title": 'اتجاه القبلة',
+      "icon": Icons.explore_rounded,
+      'route': AppRoutes.qibla,
+    }
+    ];
 }
