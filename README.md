@@ -37,13 +37,13 @@
 
 > _"A picture is worth a thousand words!"_
 
-| Home Screen | Qibla Direction | Prayer Times |
-|------------|----------------|--------------|
-| ![Home](screenshots/home.png) | ![Qibla](screenshots/qibla.png) | ![Prayer Times](screenshots/prayer.png) |
+| Home Screen | Qibla Direction                    | Prayer Times                             |
+|------------|------------------------------------|------------------------------------------|
+| ![Home](assets/layouts/home.png) | ![Qibla](assets/layouts/qibla.png) | ![Prayer Times](assets/layouts/azan.png) |
 
-| Quran Search | Bookmarks | Azan Notification |
-|------------|----------------|--------------|
-| ![Quran](screenshots/quran.png) | ![Bookmarks](screenshots/bookmarks.png) | ![Azan](screenshots/azan.png) |
+| Quran Search                       | Bookmarks                                   | Azan Notification                     |
+|------------------------------------|---------------------------------------------|---------------------------------------|
+| ![Quran](assets/layouts/Quran.png) | ![Bookmarks](assets/layouts/bookmarked.png) | ![search](assets/layouts/search2.png) |
 
 ---
 
