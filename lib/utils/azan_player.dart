@@ -64,7 +64,7 @@ class AzanNotifications {
           now.month,
           now.day,
           hour,
-          minute+10,
+          minute,
         );
 
         if (azanDateTime.isAfter(now)) {

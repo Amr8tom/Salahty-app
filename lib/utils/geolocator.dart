@@ -10,14 +10,15 @@ class GetLocation {
   factory GetLocation(){return _instanste;}
 
   /// Fetches the current latitude and longitude.
-  static Future<void> getLatLang({required BuildContext context}) async {
+  static Future<void> getLatLang({ BuildContext? context}) async {
     bool serviceEnabled;
     LocationPermission permission;
 
     /// Check if location services are enabled
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
-      showLocationDialog(context);
+      if(context!=null){
+      showLocationDialog(context);}
       return Future.error('Location services are disabled.');
     }
 

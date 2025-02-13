@@ -19,7 +19,7 @@ class _AzanScreenState extends State<AzanScreen> {
   @override
   void initState() {
     super.initState();
-    GetLocation.getLatLang(context: context);
+
     context.read<AzanCubit>().fetch(
         latitude: GetLocation.pos?.latitude.toString(),
         longitude: GetLocation.pos?.longitude.toString());
@@ -50,19 +50,6 @@ class _AzanScreenState extends State<AzanScreen> {
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
-
-          // image: DecorationImage(
-          //
-          //   image: const AssetImage('assets/images/islamic_patter2.jpg',),
-          //   fit: BoxFit.cover,
-          //   alignment: Alignment.centerRight,
-          //
-          //   colorFilter: ColorFilter.mode(
-          //       // Color(0xFFBCC8D2),
-          //       Color(0xFFDFE6E6),
-          //     BlendMode.darken,
-          //   ),
-          // ),
         ),
         child: RefreshIndicator(
           onRefresh: () async {

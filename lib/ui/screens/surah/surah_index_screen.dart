@@ -133,12 +133,6 @@ class _SurahIndexScreenState extends State<SurahIndexScreen> {
                   ),
                 if (chapters!.isNotEmpty)
                   Container(
-                    // height: AppDimensions.normalize(20),
-                    // margin: EdgeInsets.only(
-                    //   top: MediaQuery.of(context).size.height * 0.0,
-                    //   left: AppDimensions.normalize(5),
-                    //   right: AppDimensions.normalize(5),
-                    // ),
                     child: TextFormField(
                       style: TextStyle(color: Colors.white),
                       onChanged: (value) {

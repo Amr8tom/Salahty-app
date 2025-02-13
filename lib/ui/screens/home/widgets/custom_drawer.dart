@@ -114,55 +114,55 @@ class _CustomDrawer extends StatelessWidget {
                 ),
 
                 /// Dark Mode Toggle
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10.0),
-                  child: Container(
-                    padding: const EdgeInsets.all(16),
-                    decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.1),
-                      borderRadius: BorderRadius.circular(15),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.greenAccent.withOpacity(0.3),
-                          blurRadius: 10,
-                          spreadRadius: 1,
-                        ),
-                      ],
-                    ),
-                    child: Row(
-                      children: [
-                        Icon(
-                          Icons.surround_sound_outlined, // Moon Icon for Dark Mode
-                          color: Colors.white,
-                          size: 28,
-                        ),
-                        const SizedBox(width: 16),
-                        Expanded(
-                          child: Text(
-                            "تفعيل الاذان",
-                            style: AppText.b1?.copyWith(
-                              fontSize: 18,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w600,
-                              fontFamily: "AmiriQuran",
-                            ),
-                          ),
-                        ),
-                        Switch(
-                          value: appProvider.isDark,
-                          activeColor: Colors.yellowAccent,
-                          onChanged: (value) {
-                            if (value) {
-                              appProvider.setTheme(ThemeMode.dark);
-                            } else {
-                              appProvider.setTheme(ThemeMode.light);
-                            }
-                          },
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
+                // Padding(
+                //   padding: const EdgeInsets.symmetric(vertical: 10.0),
+                //   child: Container(
+                //     padding: const EdgeInsets.all(16),
+                //     decoration: BoxDecoration(
+                //       color: Colors.white.withOpacity(0.1),
+                //       borderRadius: BorderRadius.circular(15),
+                //       boxShadow: [
+                //         BoxShadow(
+                //           color: Colors.greenAccent.withOpacity(0.3),
+                //           blurRadius: 10,
+                //           spreadRadius: 1,
+                //         ),
+                //       ],
+                //     ),
+                //     child: Row(
+                //       children: [
+                //         Icon(
+                //           Icons.surround_sound_outlined, // Moon Icon for Dark Mode
+                //           color: Colors.white,
+                //           size: 28,
+                //         ),
+                //         const SizedBox(width: 16),
+                //         Expanded(
+                //           child: Text(
+                //             "تفعيل الاذان",
+                //             style: AppText.b1?.copyWith(
+                //               fontSize: 18,
+                //               color: Colors.white,
+                //               fontWeight: FontWeight.w600,
+                //               fontFamily: "AmiriQuran",
+                //             ),
+                //           ),
+                //         ),
+                //         Switch(
+                //           value: appProvider.isDark,
+                //           activeColor: Colors.yellowAccent,
+                //           onChanged: (value) {
+                //             if (value) {
+                //               appProvider.setTheme(ThemeMode.dark);
+                //             } else {
+                //               appProvider.setTheme(ThemeMode.light);
+                //             }
+                //           },
+                //         ),
+                //       ],
+                //     ),
+                //   ),
+                // ),
 
                 /// Footer
                 const SizedBox(height: 50,),

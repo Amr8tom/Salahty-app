@@ -139,7 +139,9 @@ class _JuzIndexScreenState extends State<JuzIndexScreen> {
                                 children: [
                                   Text(
                                     _searchedJuzName,
-                                    style: AppText.h2b,
+                                    style: AppText.h2b?.copyWith(
+                                      fontFamily: "Amiri",
+                                    ),
                                   ),
                                 ],
                               ),
@@ -192,6 +194,7 @@ class _JuzIndexScreenState extends State<JuzIndexScreen> {
                                           JuzUtils.juzNames[index],
                                           style: AppText.b1?.copyWith(
                                             fontSize: 18,
+                                            fontFamily: "Amiri",
                                             fontWeight: FontWeight.w400,
                                             color: Colors.amber,
                                           ),                                      textAlign: TextAlign.center,
