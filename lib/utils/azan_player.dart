@@ -3,23 +3,31 @@ import 'package:flutter_timezone/flutter_timezone.dart';
 import 'package:timezone/timezone.dart' as tz;
 import 'package:timezone/data/latest.dart' as tz;
 
-class AzanNotificaions {
-  AzanNotificaions();
+class AzanNotifications {
+  static final AzanNotifications _instance = AzanNotifications._internal();
+
+  factory AzanNotifications() {
+    return _instance;
+  }
+
+  AzanNotifications._internal();
+
   final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-      FlutterLocalNotificationsPlugin();
+  FlutterLocalNotificationsPlugin();
 
   // Initialize notifications
-
   Future<void> init() async {
+    // Step 1: Initialize the timezone database
+    tz.initializeTimeZones();
+
     const AndroidInitializationSettings initializationSettingsAndroid =
-        AndroidInitializationSettings(
-            '@mipmap/ic_launcher'); // Replace with your app icon
+    AndroidInitializationSettings('@mipmap/ic_launcher'); // Replace with your app icon
 
     const InitializationSettings initializationSettings =
-        InitializationSettings(android: initializationSettingsAndroid);
+    InitializationSettings(android: initializationSettingsAndroid);
     final AndroidFlutterLocalNotificationsPlugin androidPlugin =
-        flutterLocalNotificationsPlugin.resolvePlatformSpecificImplementation<
-            AndroidFlutterLocalNotificationsPlugin>()!;
+    flutterLocalNotificationsPlugin.resolvePlatformSpecificImplementation<
+        AndroidFlutterLocalNotificationsPlugin>()!;
     await flutterLocalNotificationsPlugin.initialize(initializationSettings);
 
     const AndroidNotificationChannel channel = AndroidNotificationChannel(
@@ -36,10 +44,11 @@ class AzanNotificaions {
   int testHour = 16;
   int testMin = 20;
 
-
   void scheduleAzanNotifications(Map<String, String?> timings) async {
-    await init();
+    await init(); // Initialize notifications
     String currentTimeZone = await FlutterTimezone.getLocalTimezone();
+
+    // Step 2: Ensure timezone is initialized before using
     final localZone = tz.getLocation(currentTimeZone);
     final tz.TZDateTime now = tz.TZDateTime.now(localZone);
 
@@ -55,7 +64,7 @@ class AzanNotificaions {
           now.month,
           now.day,
           hour,
-          minute,
+          minute+10,
         );
 
         if (azanDateTime.isAfter(now)) {
@@ -80,9 +89,4 @@ class AzanNotificaions {
       }
     });
   }
-
-
-
-
-
 }

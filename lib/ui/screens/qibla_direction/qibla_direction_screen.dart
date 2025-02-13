@@ -144,7 +144,11 @@ class _QiblaDirectionScreenState extends State<QiblaDirectionScreen>
         width: double.infinity,
         decoration: const BoxDecoration(
           gradient: LinearGradient(
-            colors: [Color(0xFF002F5E), Color(0xFF193A77), Color(0xFFD4AF37)],
+            colors: [
+              Color(0xFF0F2027), // Deep Teal
+              Color(0xFF203A43), // Teal
+              Color(0xFF3A5963), // T
+              Color(0xFFD4AF37)],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),

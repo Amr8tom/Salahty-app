@@ -76,7 +76,7 @@ class _PageScreenState extends State<PageScreen> {
         widgetTitle: Text(
           widget.chapter?.name ?? widget.juz?.number.toString() ?? "",
           style: AppText.h1b!.copyWith(
-            fontFamily: 'AmiriQuran',
+            fontFamily: 'Amiri',
             height: 1.5,
             color: Colors.white,
           ),
@@ -140,7 +140,7 @@ class _PageScreenState extends State<PageScreen> {
                           // color: Color(0xFFFDF5E6), // Off-White for text
                           color: Color(0xFFBD9E63), // Off-White for text
                           fontFamily:
-                          firstVerses.length < 48 ? 'AmiriQuran' : 'Amiri',
+                          firstVerses.length < 48 ? 'Amiri' : 'Amiri',
                           fontSize: MediaQuery.of(context).size.height * 0.03,
                           height: 2.3,
                         ),
@@ -154,7 +154,7 @@ class _PageScreenState extends State<PageScreen> {
                           color: Color(0xFFBD9E63), // Off-White for text
                           // color: Color(0xFFFDF5E6), // Off-White for text
                           fontFamily: "Amiri",
-                          // fontFamily: _isLightVisible?'AmiriQuran':"Amiri",
+                          // fontFamily: _isLightVisible?'Amiri':"Amiri",
                           fontSize: MediaQuery.of(context).size.height * 0.027,
                           height: 2.3,
                         ),

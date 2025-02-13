@@ -53,6 +53,7 @@ class SurahTile extends StatelessWidget {
                   chapter!.name!,
                   style: AppText.b1?.copyWith(
                     fontSize: 20,
+                    fontFamily: "Amiri",
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
                   ),                   textAlign: TextAlign.right,

@@ -40,17 +40,29 @@ class _AzanScreenState extends State<AzanScreen> {
       extendBodyBehindAppBar: true,
       body: Container(
         decoration: BoxDecoration(
-          image: DecorationImage(
-
-            image: const AssetImage('assets/images/pageBG.png',),
-            fit: BoxFit.cover,
-            alignment: Alignment.centerRight,
-
-            colorFilter: ColorFilter.mode(
-                Color(0xFF203A43),
-              BlendMode.darken,
-            ),
+          gradient: LinearGradient(
+            colors: [
+              Color(0xFF0F2027), // Deep Teal
+              Color(0xFF203A43), // Teal
+              Color(0xFF3A5963), // Teal
+              Color(0xFFF3CA40), // Golden Yellow
+            ],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
           ),
+
+          // image: DecorationImage(
+          //
+          //   image: const AssetImage('assets/images/islamic_patter2.jpg',),
+          //   fit: BoxFit.cover,
+          //   alignment: Alignment.centerRight,
+          //
+          //   colorFilter: ColorFilter.mode(
+          //       // Color(0xFFBCC8D2),
+          //       Color(0xFFDFE6E6),
+          //     BlendMode.darken,
+          //   ),
+          // ),
         ),
         child: RefreshIndicator(
           onRefresh: () async {
@@ -84,7 +96,7 @@ class _AzanScreenState extends State<AzanScreen> {
                       }
 
                       /// Schedule notifications when timings are fetched
-                      final azanNotifications = AzanNotificaions();
+                      final azanNotifications = AzanNotifications();
                       azanNotifications.init().then((_) {
                         azanNotifications.scheduleAzanNotifications({
                           'الفجر': timings.fajr,
