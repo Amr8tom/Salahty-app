@@ -4,6 +4,19 @@
 **Salahty** is a beautifully designed **Islamic lifestyle app** that helps Muslims stay connected to their faith through essential features such as **accurate prayer times, Azan notifications, Qibla direction, Quran reading, and more.** Whether you're at home or traveling, Salahty ensures that you never miss a prayer and always find the right direction for Qibla.
 
 ---
+## 📸 App Screenshots
+
+> _"A picture is worth a thousand words!"_
+
+| Home Screen | Qibla Direction                    | Prayer Times                             |
+|------------|------------------------------------|------------------------------------------|
+| ![Home](assets/layouts/home.png) | ![Qibla](assets/layouts/qibla.png) | ![Prayer Times](assets/layouts/azan.png) |
+
+| Quran                       | Bookmarks                                   | Azan Notification                     |
+|-----------------------------------|---------------------------------------------|---------------------------------------|
+| ![Quran](assets/layouts/Quran.png) | ![Bookmarks](assets/layouts/bookmarked.png) | ![search](assets/layouts/search2.png) |
+
+---
 
 ## 🌟 Features
 
@@ -33,19 +46,7 @@
 
 ---
 
-## 📸 App Screenshots
 
-> _"A picture is worth a thousand words!"_
-
-| Home Screen | Qibla Direction                    | Prayer Times                             |
-|------------|------------------------------------|------------------------------------------|
-| ![Home](assets/layouts/home.png) | ![Qibla](assets/layouts/qibla.png) | ![Prayer Times](assets/layouts/azan.png) |
-
-| Quran Search                       | Bookmarks                                   | Azan Notification                     |
-|------------------------------------|---------------------------------------------|---------------------------------------|
-| ![Quran](assets/layouts/Quran.png) | ![Bookmarks](assets/layouts/bookmarked.png) | ![search](assets/layouts/search2.png) |
-
----
 
 ## 📥 Download & Test Salahty
 We are inviting **beta testers** to try **Salahty App** and share feedback!
